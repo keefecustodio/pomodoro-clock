@@ -10,26 +10,32 @@ decrementBtn.addEventListener('click', () => {
         timeCounter = 0;
     } else {
         decrementCounter()
+        updateSetTimer()
     }
     
 })
 
 incrementBtn.addEventListener('click', () => {
     incrementCounter()
+    updateSetTimer()
+})
+
+startBtn.addEventListener('click', () => {
+    startTimer()
 })
 
 function incrementCounter() {
     timeCounter += 60
-    console.log(timeCounter)
-    updateSetTimer()
 }
 
 function decrementCounter() {
     timeCounter -= 60
-    console.log(timeCounter)
-    updateSetTimer()
 }
 
 function updateSetTimer() {
     timeSetDisplay.innerText = `${timeCounter / 60}:00`
+}
+
+function startTimer() {
+    let time_start = timeCounter
 }
