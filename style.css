@@ -40,6 +40,10 @@ button {
   font-family: 'Montserrat';
 }
 
+button:focus {
+  border: 1px solid black;
+}
+
 button:active {
   transform: scale(0.95);
 }
