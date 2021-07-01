@@ -1,7 +1,7 @@
 const decrementBtn = document.getElementById('decrement')
 const incrementBtn = document.getElementById('increment')
 const startBtn = document.getElementById('start')
-const timeDisplay = document.getElementById('time-display')
+const timeSetDisplay = document.getElementById('time-set-display')
 
 let timeCounter = 0;
 
@@ -21,15 +21,15 @@ incrementBtn.addEventListener('click', () => {
 function incrementCounter() {
     timeCounter += 60
     console.log(timeCounter)
-    updateTimer()
+    updateSetTimer()
 }
 
 function decrementCounter() {
     timeCounter -= 60
     console.log(timeCounter)
-    updateTimer()
+    updateSetTimer()
 }
 
-function updateTimer() {
-    timeDisplay.innerText = `${timeCounter}`
+function updateSetTimer() {
+    timeSetDisplay.innerText = `${timeCounter / 60}:00`
 }
