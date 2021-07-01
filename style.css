@@ -1,11 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 * {
   box-sizing: border-box;
 }
 
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Montserrat', sans-serif;
+  /* font-weight: 100; font-weight doesnt work */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -28,10 +28,18 @@ body {
 
 #increment-decrement button {
     display: block;
-    margin: 2px;
+    margin: 10px;
     padding: 10px 16px;
 }
 
 button {
-    width: 100%;
+  width: 100%;
+  background: transparent;
+  border: 1px solid black;
+  box-shadow: 3px 3px 3px 0px #000000;
+  font-family: 'Montserrat';
+}
+
+button:active {
+  transform: scale(0.95);
 }
