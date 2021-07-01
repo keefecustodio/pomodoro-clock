@@ -14,3 +14,24 @@ body {
   overflow: hidden;
   margin: 0;
 }
+
+#pomodoro-clock {
+    text-align: center;
+}
+
+#increment-decrement {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#increment-decrement button {
+    display: block;
+    margin: 2px;
+    padding: 10px 16px;
+}
+
+button {
+    width: 100%;
+}
