@@ -7,7 +7,7 @@ const breakDecrementBtn = document.getElementById('break-decrement')
 const breakIncrementBtn = document.getElementById('break-increment')
 const breakSetDisplay = document.getElementById('break-set-display')
 
-let timeCounter = 5
+let timeCounter = 0
 let breakCounter = 0
 
 let start_stop = false
@@ -17,20 +17,20 @@ let break_stop = false
 let time_start
 let break_start
 
-updateSetTimer() // remove when done testing
-
 decrementBtn.addEventListener('click', () => {
     if(timeCounter - 60 < 0) {
         timeCounter = 0;
     } else {
-        decrementCounter()   
+        decrementCounter()  
+        updateSession() 
     }
-    updateSetTimer()
+    console.log("session:"+timeCounter)
 })
 
 incrementBtn.addEventListener('click', () => {
     incrementCounter()
-    updateSetTimer()
+    updateSession()
+    console.log("session:"+timeCounter)
 })
 
 startBtn.addEventListener('click', () => {
@@ -47,9 +47,8 @@ function decrementCounter() {
     timeCounter -= 60
 }
 
-/* Updates timer after every decrement of timeCounter. */
-function updateSetTimer() {
-    timeSetDisplay.innerText = `${Math.floor(timeCounter / 60)}:${(timeCounter % 60) < 10 ? '0'+timeCounter % 60 : timeCounter % 60}`
+function updateSession() {
+    timeSetDisplay.innerHTML = `${timeCounter / 60 +':00'}`
 }
 
 function countdown() {
@@ -60,7 +59,6 @@ function countdown() {
         clearInterval(time_start)
         breakCountdownStart()
     } else {
-        updateSetTimer()
         console.log(timeCounter)
     }
 }
@@ -82,13 +80,15 @@ breakDecrementBtn.addEventListener('click', () => {
         breakCounter = 0
     } else {
         breakDecrement()
+        updateBreak()
     }
-    updateBreakTimer()
+    console.log("break:"+breakCounter)
 })
 
 breakIncrementBtn.addEventListener('click', () => {
     breakIncrement()
-    updateBreakTimer()
+    updateBreak()
+    console.log("break:"+breakCounter)
 })
 
 function breakDecrement() {
@@ -106,7 +106,6 @@ function breakCountdown() {
         break_stop = !break_stop
         clearInterval(break_start)
     } else {
-        updateBreakTimer()
         console.log(breakCounter)
     }
 }
@@ -118,7 +117,6 @@ function breakCountdownStart() {
     }
 }
 
-
-function updateBreakTimer() {
-    breakSetDisplay.innerText = `${Math.floor(breakCounter / 60)}:${(breakCounter % 60) < 10 ? '0'+breakCounter % 60 : breakCounter % 60}`
+function updateBreak() {
+    breakSetDisplay.innerHTML = `${breakCounter / 60 + ':00'}`
 }
