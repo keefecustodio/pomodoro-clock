@@ -3,9 +3,21 @@ const incrementBtn = document.getElementById('increment')
 const startBtn = document.getElementById('start')
 const timeSetDisplay = document.getElementById('time-set-display')
 
-let timeCounter = 0
+const breakDecrementBtn = document.getElementById('break-decrement')
+const breakIncrementBtn = document.getElementById('break-increment')
+const breakSetDisplay = document.getElementById('break-set-display')
+
+let timeCounter = 5
+let breakCounter = 0
+
 let start_stop = false
+let break_stop = false
+
+/* Stores setInterval functions */
 let time_start
+let break_start
+
+updateSetTimer() // remove when done testing
 
 decrementBtn.addEventListener('click', () => {
     if(timeCounter - 60 < 0) {
@@ -44,7 +56,9 @@ function countdown() {
     timeCounter--
     if(timeCounter < 0) {
         timeCounter = 0
+        start_stop = !start_stop
         clearInterval(time_start)
+        breakCountdownStart()
     } else {
         updateSetTimer()
         console.log(timeCounter)
@@ -60,4 +74,51 @@ function countdownStart() {
         clearInterval(time_start)
         start_stop = !start_stop
     }
+}
+
+/* Break Timer Code Below */
+breakDecrementBtn.addEventListener('click', () => {
+    if(breakCounter - 60 < 0) {
+        breakCounter = 0
+    } else {
+        breakDecrement()
+    }
+    updateBreakTimer()
+})
+
+breakIncrementBtn.addEventListener('click', () => {
+    breakIncrement()
+    updateBreakTimer()
+})
+
+function breakDecrement() {
+    breakCounter-=60
+}
+
+function breakIncrement() {
+    breakCounter+=60
+}
+
+function breakCountdown() {
+    breakCounter--
+    if(breakCounter < 0) {
+        breakCounter = 0
+        break_stop = !break_stop
+        clearInterval(break_start)
+    } else {
+        updateBreakTimer()
+        console.log(breakCounter)
+    }
+}
+
+function breakCountdownStart() {
+    if(!break_start) {
+        break_start = !break_start
+        break_start = setInterval(() => {breakCountdown()}, 1000)
+    }
+}
+
+
+function updateBreakTimer() {
+    breakSetDisplay.innerText = `${Math.floor(breakCounter / 60)}:${(breakCounter % 60) < 10 ? '0'+breakCounter % 60 : breakCounter % 60}`
 }
